@@ -1,7 +1,7 @@
 {
-  "name": "Catatan Keuangan",
-  "short_name": "Keuangan",
-  "description": "Catat pemasukan dan pengeluaran langsung ke Google Sheets.",
+  "name": "Fortune",
+  "short_name": "Fortune",
+  "description": "Fortune: catat pemasukan dan pengeluaran langsung ke Google Sheets.",
   "lang": "id",
   "start_url": "./",
   "scope": "./",

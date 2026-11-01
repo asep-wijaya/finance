@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<!-- FILE 2 dari 7: index.html - seluruh tampilan & logika aplikasi -->
+<!-- FILE 2 dari 7: index.html (Fortune) - seluruh tampilan & logika aplikasi -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Catatan Keuangan</title>
+<title>Fortune</title>
 <meta name="theme-color" content="#ffffff">
 <meta name="color-scheme" content="light">
 <meta name="mobile-web-app-capable" content="yes">
@@ -243,7 +243,8 @@ input,select{font:inherit;color:inherit}
 #lock{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:#fff;
   background-image:radial-gradient(520px 340px at 10% -40px,rgba(79,124,255,.18),transparent 70%),radial-gradient(480px 320px at 100% 20%,rgba(139,92,246,.16),transparent 70%)}
 #lock .box{width:min(380px,100%);text-align:center}
-.logo{width:76px;height:76px;border-radius:26px;margin:0 auto 16px;background:var(--grad);display:grid;place-items:center;color:#fff;font-weight:800;font-size:25px;box-shadow:0 16px 36px rgba(110,90,246,.4)}
+.logo{display:block;width:104px;height:104px;border-radius:30px;margin:0 auto 18px;box-shadow:0 18px 40px rgba(80,70,220,.38)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 #lock h1{margin:0 0 4px;font-size:25px;font-weight:800;letter-spacing:-.02em}
 #lock p{margin:0 0 22px;color:var(--ink2);font-size:14px}
 #lock .inp{text-align:center;margin-bottom:10px;height:56px;font-size:20px}
@@ -258,8 +259,8 @@ input,select{font:inherit;color:inherit}
 <!-- ========== LAYAR PIN ========== -->
 <div id="lock">
   <form class="box" id="lock-form" autocomplete="off">
-    <div class="logo">Rp</div>
-    <h1>Catatan Keuangan</h1>
+    <img class="logo" src="icon-192.png" alt="Fortune">
+    <h1 class="sr">Fortune</h1>
     <p>Masukkan PIN untuk membuka</p>
     <input class="inp" id="url" type="url" placeholder="Tempel alamat Web App di sini" hidden>
     <input class="inp" id="pin" type="password" inputmode="numeric" autocomplete="off" placeholder="PIN" maxlength="20" aria-label="PIN">
@@ -369,7 +370,7 @@ input,select{font:inherit;color:inherit}
   <button class="menu-item" id="m-refresh"></button>
   <button class="menu-item" id="m-install" hidden></button>
   <button class="menu-item" id="m-lock"></button>
-  <div class="ver">Catatan Keuangan v1.0</div>
+  <div class="ver">Fortune v1.0</div>
 </div>
 
 <!-- KONFIRMASI HAPUS -->
