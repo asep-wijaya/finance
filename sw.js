@@ -1,5 +1,5 @@
 /* FILE 5 dari 7: sw.js - service worker: membuat aplikasi bisa di-install & terbuka cepat */
-const CACHE = 'fortune-v3';
+const CACHE = 'fortune-v4';
 const SHELL = ['./', './index.html', './config.js', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (e) => {

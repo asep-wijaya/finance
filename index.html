@@ -6,7 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fortune</title>
 <meta name="theme-color" content="#ffffff">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="light dark">
+<script>(function(){try{var t=localStorage.getItem("cf_theme")||"auto";var d=t==="dark"||(t==="auto"&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.setAttribute("data-theme",d?"dark":"light");}catch(e){}})();</script>
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" href="icon-192.png">
@@ -25,12 +26,25 @@
   --shadow-sm:0 4px 14px rgba(79,92,255,.08);
   --r:22px; --nav-h:76px;
   --sab:env(safe-area-inset-bottom,0px);
+  --solid:#ffffff; --segon:#ffffff; --track:#eef0fb; --grid:#eceefa; --grab:#dfe1f2; --menuline:#f0f1fa;
+  --icb:#e8efff; --sk1:#f1f2fb; --sk2:#fafaff; --amt1:#ffffff; --amt2:#f8f8ff; --navbg:rgba(255,255,255,.82); --toast:#10132b; --rosetxt:#a8272b;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#0b0d1c; --ink:#eef0ff; --ink2:#a9afcc; --ink3:#7b82a3;
+  --line:rgba(140,150,255,.2); --soft:#191c37; --glass:rgba(24,27,54,.72);
+  --violet-soft:#2a2358; --teal-soft:#10353a; --rose-soft:#3a1f2a; --teal:#2bd4c0; --rose:#ff6b72;
+  --shadow:0 10px 34px rgba(0,0,0,.45); --shadow-sm:0 4px 14px rgba(0,0,0,.35);
+  --solid:#14172f; --segon:#2b3068; --track:#232748; --grid:#252a4d; --grab:#3a4070; --menuline:#23284a;
+  --icb:#1f2a5c; --sk1:#1a1d38; --sk2:#242850; --amt1:#171a35; --amt2:#12152c; --navbg:rgba(20,23,47,.86); --toast:#2b3068; --rosetxt:#ff9aa0;
+  color-scheme:dark;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
 body{
+  background-color:var(--bg);
   font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-  color:var(--ink);background:var(--bg);min-height:100dvh;
+  color:var(--ink);background-color:var(--bg);min-height:100dvh;
   background-image:
     radial-gradient(520px 320px at 12% -60px,rgba(79,124,255,.13),transparent 70%),
     radial-gradient(460px 300px at 100% 40px,rgba(139,92,246,.12),transparent 70%);
@@ -82,15 +96,15 @@ input,select{font:inherit;color:inherit}
 .chip{flex:none;padding:9px 15px;border-radius:999px;background:var(--glass);border:1px solid var(--line);font-weight:600;font-size:13.5px;color:var(--ink2);transition:.18s}
 .chip.on{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(110,90,246,.28)}
 .chips.wrap{flex-wrap:wrap;overflow:visible;padding:0;margin:0}
-.chips.wrap .chip{padding:10px 14px;background:#fff}
+.chips.wrap .chip{padding:10px 14px;background:var(--solid)}
 .chips.wrap .chip.on{background:var(--grad)}
 .range-note{font-size:12.5px;color:var(--ink2);margin:10px 2px 0;font-weight:500}
 .custom{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.inp{width:100%;height:50px;border-radius:15px;border:1.5px solid rgba(99,102,241,.2);background:#fff;padding:0 14px;font-size:16px;outline:none;transition:.15s}
+.inp{width:100%;height:50px;border-radius:15px;border:1.5px solid rgba(99,102,241,.2);background:var(--solid);padding:0 14px;font-size:16px;outline:none;transition:.15s}
 .inp:focus{border-color:var(--a2);box-shadow:0 0 0 4px rgba(139,92,246,.14)}
 .seg{display:inline-flex;background:var(--soft);border-radius:13px;padding:3px;gap:2px}
 .seg button{padding:7px 12px;border-radius:10px;font-size:12.5px;font-weight:700;color:var(--ink2)}
-.seg button.on{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(79,92,255,.14)}
+.seg button.on{background:var(--segon);color:var(--ink);box-shadow:0 2px 8px rgba(79,92,255,.14)}
 .seg-lg{display:grid;grid-template-columns:1fr 1fr;width:100%;border-radius:16px;padding:4px}
 .seg-lg button{padding:13px 8px;font-size:15px;border-radius:13px}
 .seg-lg button.on.keluar{background:var(--grad);color:#fff}
@@ -101,7 +115,7 @@ input,select{font:inherit;color:inherit}
 .ins .it{display:flex;gap:12px;align-items:flex-start}
 .ins .ic{flex:none;width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:var(--violet-soft);color:var(--a2)}
 .ins .ic.t{background:var(--teal-soft);color:var(--teal)}
-.ins .ic.b{background:#e8efff;color:var(--a1)}
+.ins .ic.b{background:var(--icb);color:var(--a1)}
 .ins .ic svg{width:19px;height:19px}
 .ins .k{font-size:12px;font-weight:600;color:var(--ink2)}
 .ins .v{font-size:16px;font-weight:700;letter-spacing:-.01em}
@@ -146,7 +160,7 @@ input,select{font:inherit;color:inherit}
 .btn-soft{display:inline-block;padding:11px 18px;border-radius:14px;background:var(--violet-soft);color:var(--a2);font-weight:700}
 
 /* ---------- skeleton ---------- */
-.sk{border-radius:var(--r);margin-top:14px;background:linear-gradient(90deg,#f1f2fb 25%,#fafaff 50%,#f1f2fb 75%);background-size:200% 100%;animation:sh 1.3s infinite}
+.sk{border-radius:var(--r);margin-top:14px;background:linear-gradient(90deg,var(--sk1) 25%,var(--sk2) 50%,var(--sk1) 75%);background-size:200% 100%;animation:sh 1.3s infinite}
 @keyframes sh{to{background-position:-200% 0}}
 
 /* ---------- history ---------- */
@@ -174,7 +188,7 @@ input,select{font:inherit;color:inherit}
 
 /* ---------- bottom nav ---------- */
 .nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(10px + var(--sab));width:min(448px,calc(100% - 24px));height:var(--nav-h);
-  display:grid;grid-template-columns:1fr 92px 1fr;align-items:center;background:rgba(255,255,255,.82);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
+  display:grid;grid-template-columns:1fr 92px 1fr;align-items:center;background:var(--navbg);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
   border:1px solid var(--line);border-radius:28px;box-shadow:0 14px 40px rgba(79,92,255,.18);z-index:20}
 .nav-item{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11.5px;font-weight:700;color:var(--ink3);transition:.18s}
 .nav-item svg{width:24px;height:24px}
@@ -188,15 +202,15 @@ input,select{font:inherit;color:inherit}
 /* ---------- sheets ---------- */
 .backdrop{position:fixed;inset:0;background:rgba(15,18,38,.38);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:.25s;z-index:40}
 .backdrop.on{opacity:1;pointer-events:auto}
-.sheet{position:fixed;left:50%;bottom:0;width:min(480px,100%);max-height:94dvh;overflow:auto;background:#fff;border-radius:28px 28px 0 0;padding:10px 18px calc(22px + var(--sab));
+.sheet{position:fixed;left:50%;bottom:0;width:min(480px,100%);max-height:94dvh;overflow:auto;background:var(--solid);border-radius:28px 28px 0 0;padding:10px 18px calc(22px + var(--sab));
   transform:translate(-50%,105%);visibility:hidden;transition:transform .32s cubic-bezier(.2,.9,.25,1),visibility 0s .32s;z-index:50;box-shadow:0 -16px 50px rgba(40,40,120,.18)}
 .sheet.on{transform:translate(-50%,0);visibility:visible;transition-delay:0s}
-.grab{width:44px;height:5px;border-radius:9px;background:#dfe1f2;margin:0 auto 10px}
+.grab{width:44px;height:5px;border-radius:9px;background:var(--grab);margin:0 auto 10px}
 .sheet-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .sheet-head h2{margin:0;font-size:19px;font-weight:800;letter-spacing:-.02em}
 .lbl{display:block;font-size:12.5px;font-weight:700;color:var(--ink2);margin:16px 0 8px}
 .lbl i{font-weight:500;font-style:normal;color:var(--ink3)}
-.amt{display:flex;align-items:center;gap:10px;margin-top:14px;padding:6px 16px;border-radius:20px;border:1.5px solid rgba(99,102,241,.22);background:linear-gradient(180deg,#fff,#f8f8ff);transition:.15s}
+.amt{display:flex;align-items:center;gap:10px;margin-top:14px;padding:6px 16px;border-radius:20px;border:1.5px solid rgba(99,102,241,.22);background:linear-gradient(180deg,var(--amt1),var(--amt2));transition:.15s}
 .amt:focus-within{border-color:var(--a2);box-shadow:0 0 0 4px rgba(139,92,246,.14)}
 .amt span{font-size:22px;font-weight:700;color:var(--ink3)}
 .amt input{flex:1;min-width:0;border:0;outline:0;background:none;font-size:36px;font-weight:800;height:62px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
@@ -208,7 +222,7 @@ input,select{font:inherit;color:inherit}
 .date-row .q.on{background:var(--violet-soft);color:var(--a2)}
 .preview{margin-top:8px;font-size:12px;color:var(--ink3);min-height:18px}
 .preview b{color:var(--ink2)}
-.banner{margin-top:14px;padding:11px 13px;border-radius:14px;background:var(--rose-soft);color:#a8272b;font-size:13px;font-weight:600}
+.banner{margin-top:14px;padding:11px 13px;border-radius:14px;background:var(--rose-soft);color:var(--rosetxt);font-size:13px;font-weight:600}
 .btn-primary{width:100%;height:58px;margin-top:18px;border-radius:19px;background:var(--grad);color:#fff;font-weight:800;font-size:16.5px;box-shadow:0 12px 26px rgba(110,90,246,.38);display:flex;align-items:center;justify-content:center;gap:10px;transition:.15s}
 .btn-primary:active{transform:scale(.985)}
 .btn-primary:disabled{opacity:.7}
@@ -222,25 +236,25 @@ input,select{font:inherit;color:inherit}
 .detail .amount.masuk{color:var(--teal)}
 .detail dl{display:grid;grid-template-columns:96px 1fr;gap:10px 8px;margin:16px 0 0;font-size:14px}
 .detail dt{color:var(--ink2);font-weight:600}.detail dd{margin:0;font-weight:600;word-break:break-word}
-.menu-item{display:flex;align-items:center;gap:14px;width:100%;padding:15px 6px;border-bottom:1px solid #f0f1fa;font-weight:600;text-align:left}
+.menu-item{display:flex;align-items:center;gap:14px;width:100%;padding:15px 6px;border-bottom:1px solid var(--menuline);font-weight:600;text-align:left}
 .menu-item svg{width:22px;height:22px;color:var(--a2)}
 .menu-item:last-of-type{border-bottom:0}
 .ver{text-align:center;color:var(--ink3);font-size:11.5px;margin-top:10px}
 
 /* ---------- dialog & toast ---------- */
-.dlg{position:fixed;left:50%;top:50%;transform:translate(-50%,-46%) scale(.96);width:min(340px,calc(100% - 40px));background:#fff;border-radius:26px;padding:22px 20px 18px;z-index:60;opacity:0;pointer-events:none;transition:.22s;box-shadow:0 24px 60px rgba(30,30,100,.28);text-align:center}
+.dlg{position:fixed;left:50%;top:50%;transform:translate(-50%,-46%) scale(.96);width:min(340px,calc(100% - 40px));background:var(--solid);border-radius:26px;padding:22px 20px 18px;z-index:60;opacity:0;pointer-events:none;transition:.22s;box-shadow:0 24px 60px rgba(30,30,100,.28);text-align:center}
 .dlg.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
 .dlg .ico{width:54px;height:54px;border-radius:18px;background:var(--rose-soft);color:var(--rose);display:grid;place-items:center;margin:0 auto 10px}
 .dlg .ico svg{width:26px;height:26px}
 .dlg h3{margin:0 0 6px;font-size:18px;font-weight:800}
 .dlg p{margin:0;color:var(--ink2);font-size:14px;word-break:break-word}
-.toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));transform:translate(-50%,-140%);max-width:min(440px,calc(100% - 28px));padding:13px 16px;border-radius:17px;background:#10132b;color:#fff;font-weight:600;font-size:14px;z-index:90;transition:transform .35s cubic-bezier(.2,.9,.25,1);display:flex;gap:10px;align-items:center;box-shadow:0 14px 34px rgba(10,10,40,.3)}
+.toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));transform:translate(-50%,-140%);max-width:min(440px,calc(100% - 28px));padding:13px 16px;border-radius:17px;background:var(--toast);color:#fff;font-weight:600;font-size:14px;z-index:90;transition:transform .35s cubic-bezier(.2,.9,.25,1);display:flex;gap:10px;align-items:center;box-shadow:0 14px 34px rgba(10,10,40,.3)}
 .toast.on{transform:translate(-50%,0)}
 .toast svg{width:20px;height:20px;flex:none}
 .toast.ok svg{color:#37e0c8}.toast.bad svg{color:#ff8a8f}
 
 /* ---------- lock ---------- */
-#lock{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:#fff;
+#lock{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:var(--bg);
   background-image:radial-gradient(520px 340px at 10% -40px,rgba(79,124,255,.18),transparent 70%),radial-gradient(480px 320px at 100% 20%,rgba(139,92,246,.16),transparent 70%)}
 #lock .box{width:min(380px,100%);text-align:center}
 .logo{display:block;width:104px;height:104px;border-radius:30px;margin:0 auto 18px;box-shadow:0 18px 40px rgba(80,70,220,.38)}
@@ -367,10 +381,14 @@ input,select{font:inherit;color:inherit}
 <div class="sheet" id="sh-menu" role="dialog" aria-modal="true">
   <div class="grab"></div>
   <div class="sheet-head"><h2>Menu</h2><button class="icon-btn" data-close aria-label="Tutup" id="x3"></button></div>
+  <div class="lbl" style="margin-top:2px">Tampilan</div>
+  <div class="seg" id="theme-seg" style="width:100%;display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:8px">
+    <button data-th="light">Terang</button><button data-th="dark">Gelap</button><button data-th="auto">Otomatis</button>
+  </div>
   <button class="menu-item" id="m-refresh"></button>
   <button class="menu-item" id="m-install" hidden></button>
   <button class="menu-item" id="m-lock"></button>
-  <div class="ver">Fortune v1.0</div>
+  <div class="ver">Fortune v1.1</div>
 </div>
 
 <!-- KONFIRMASI HAPUS -->
@@ -566,7 +584,7 @@ function getRange(){
 const inRange=(t,a,b)=>t.tanggal>=a&&t.tanggal<=b;
 function sums(list){let m=0,o=0;for(const t of list){if(t.jenis==='masuk')m+=t.nominal;else o+=t.nominal}return{m,o,net:m-o}}
 function skeleton(){return '<div class="sk" style="height:168px"></div><div class="sk" style="height:120px"></div><div class="sk" style="height:200px"></div>'}
-function emptyHome(){return '<div class="card empty"><svg viewBox="0 0 96 96" fill="none"><defs><linearGradient id="eg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4f7cff"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><rect x="14" y="20" width="68" height="56" rx="16" fill="#f4f5fd"/><rect x="24" y="32" width="30" height="7" rx="3.5" fill="#dcdff5"/><rect x="24" y="46" width="48" height="7" rx="3.5" fill="#e8eafb"/><rect x="24" y="60" width="22" height="7" rx="3.5" fill="#e8eafb"/><circle cx="72" cy="30" r="14" fill="url(#eg)"/><path d="M72 24v12M66 30h12" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg><h4>Belum ada transaksi</h4><p>Tidak ada catatan di periode ini. Coba pilih periode lain atau tambahkan transaksi baru.</p><button class="btn-soft" data-act="add">+ Tambah Transaksi</button></div>'}
+function emptyHome(){return '<div class="card empty"><svg viewBox="0 0 96 96" fill="none"><defs><linearGradient id="eg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4f7cff"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><rect x="14" y="20" width="68" height="56" rx="16" style="fill:var(--soft)"/><rect x="24" y="32" width="30" height="7" rx="3.5" style="fill:var(--grab)"/><rect x="24" y="46" width="48" height="7" rx="3.5" style="fill:var(--track)"/><rect x="24" y="60" width="22" height="7" rx="3.5" style="fill:var(--track)"/><circle cx="72" cy="30" r="14" fill="url(#eg)"/><path d="M72 24v12M66 30h12" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg><h4>Belum ada transaksi</h4><p>Tidak ada catatan di periode ini. Coba pilih periode lain atau tambahkan transaksi baru.</p><button class="btn-soft" data-act="add">+ Tambah Transaksi</button></div>'}
 
 function renderHome(){
   const el=$('#home-content');
@@ -646,14 +664,14 @@ function renderHome(){
 function donut(items,total){
   const R=15.9155;let acc=0;
   const segs=items.map((it,i)=>{const p=it.v/total*100;const gap=p>2?.7:0;const s='<circle r="'+R+'" cx="21" cy="21" fill="none" stroke="'+COLORS[i]+'" stroke-width="5.4" stroke-dasharray="'+(p-gap)+' '+(100-p+gap)+'" stroke-dashoffset="'+(25-acc)+'"/>';acc+=p;return s}).join('');
-  return '<svg class="donut" viewBox="0 0 42 42" role="img" aria-label="Grafik pengeluaran per kategori"><circle r="'+R+'" cx="21" cy="21" fill="none" stroke="#eef0fb" stroke-width="5.4"/>'+segs+'<text x="21" y="20.2" text-anchor="middle" class="d1">Total</text><text x="21" y="26" text-anchor="middle" class="d2">'+short(total)+'</text></svg>';
+  return '<svg class="donut" viewBox="0 0 42 42" role="img" aria-label="Grafik pengeluaran per kategori"><circle r="'+R+'" cx="21" cy="21" fill="none" style="stroke:var(--track)" stroke-width="5.4"/>'+segs+'<text x="21" y="20.2" text-anchor="middle" class="d1">Total</text><text x="21" y="26" text-anchor="middle" class="d2">'+short(total)+'</text></svg>';
 }
 function barChart(pts){
   const W=340,H=176,pl=4,pr=4,pt=12,pb=22,iw=W-pl-pr,ih=H-pt-pb;
   const max=Math.max(1,...pts.map(p=>Math.max(p.m,p.o)));
   const n=pts.length,gw=iw/n,bw=Math.max(2,Math.min(13,gw*.36)),step=Math.ceil(n/8);
   let s='<svg class="bars" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Grafik tren"><defs><linearGradient id="gk" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#4f7cff"/></linearGradient><linearGradient id="gm" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#22d3b8"/><stop offset="1" stop-color="#0fb5a4"/></linearGradient></defs>';
-  [0,.5,1].forEach(f=>{const y=pt+ih-ih*f;s+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+y+'" y2="'+y+'" stroke="#eceefa" stroke-width="1"/>';if(f>0)s+='<text x="'+(pl+1)+'" y="'+(y-3)+'">'+short(max*f)+'</text>'});
+  [0,.5,1].forEach(f=>{const y=pt+ih-ih*f;s+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+y+'" y2="'+y+'" style="stroke:var(--grid)" stroke-width="1"/>';if(f>0)s+='<text x="'+(pl+1)+'" y="'+(y-3)+'">'+short(max*f)+'</text>'});
   pts.forEach((p,i)=>{
     const gx=pl+gw*i,cx=gx+gw/2,mh=p.m?Math.max(2,p.m/max*ih):0,oh=p.o?Math.max(2,p.o/max*ih):0;
     const tip=p.tip+' — Masuk '+rp(p.m)+' · Keluar '+rp(p.o);
@@ -694,7 +712,7 @@ function renderHistory(){
     return true;
   }).sort((a,b)=>a.tanggal<b.tanggal?1:a.tanggal>b.tanggal?-1:rowOf(b)-rowOf(a));
   if(!l.length){
-    el.innerHTML='<div class="card empty"><svg viewBox="0 0 96 96" fill="none"><rect x="14" y="20" width="68" height="56" rx="16" fill="#f4f5fd"/><circle cx="46" cy="46" r="13" stroke="#8b5cf6" stroke-width="5"/><path d="M56 56l12 12" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/></svg><h4>'+(S.tx.length?'Tidak ada hasil':'Belum ada transaksi')+'</h4><p>'+(S.tx.length?'Coba ubah kata kunci atau filter.':'Tekan tombol + untuk mencatat transaksi pertama.')+'</p></div>';return;
+    el.innerHTML='<div class="card empty"><svg viewBox="0 0 96 96" fill="none"><rect x="14" y="20" width="68" height="56" rx="16" style="fill:var(--soft)"/><circle cx="46" cy="46" r="13" stroke="#8b5cf6" stroke-width="5"/><path d="M56 56l12 12" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/></svg><h4>'+(S.tx.length?'Tidak ada hasil':'Belum ada transaksi')+'</h4><p>'+(S.tx.length?'Coba ubah kata kunci atau filter.':'Tekan tombol + untuk mencatat transaksi pertama.')+'</p></div>';return;
   }
   const total=l.length;l=l.slice(0,f.limit);
   const groups=[];l.forEach(t=>{const g=groups[groups.length-1];if(g&&g.d===t.tanggal)g.items.push(t);else groups.push({d:t.tanggal,items:[t]})});
@@ -822,6 +840,18 @@ $('#f-save').addEventListener('click',async()=>{
 fN.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('#f-save').click()}});
 fK.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();$('#f-save').click()}});
 
+/* ================= TEMA TERANG / GELAP ================= */
+const mq=window.matchMedia?matchMedia('(prefers-color-scheme: dark)'):null;
+function applyTheme(){
+  const pref=LS.get('cf_theme')||'auto';
+  const dark=pref==='dark'||(pref==='auto'&&mq&&mq.matches);
+  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+  const mt=$('meta[name="theme-color"]');if(mt)mt.setAttribute('content',dark?'#0b0d1c':'#ffffff');
+  $$('#theme-seg button').forEach(b=>b.classList.toggle('on',b.dataset.th===pref));
+}
+$('#theme-seg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;LS.set('cf_theme',b.dataset.th);applyTheme()});
+if(mq){const h=()=>{if((LS.get('cf_theme')||'auto')==='auto')applyTheme()};mq.addEventListener?mq.addEventListener('change',h):mq.addListener(h)}
+
 /* ================= MENU & PASANG APLIKASI ================= */
 let deferred=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;$('#m-install').hidden=false});
@@ -844,7 +874,7 @@ function init(){
   $('#m-refresh').innerHTML=ICON.refresh+'<span>Muat ulang data</span>';
   $('#m-install').innerHTML=ICON.install+'<span>Pasang ke layar utama</span>';
   $('#m-lock').innerHTML=ICON.lock+'<span>Kunci aplikasi</span>';
-  buildCatSelect();
+  buildCatSelect();applyTheme();
   S.url=(window.APP_CONFIG&&window.APP_CONFIG.API_URL)||LS.get('cf_url')||'';
   S.pin=LS.get('cf_pin')||'';
   if(S.url&&S.pin){showApp();loadCache();renderAll();refresh(true)}
