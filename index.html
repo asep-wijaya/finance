@@ -81,7 +81,7 @@ input,select{font:inherit;color:inherit}
 .hero::before{content:"";position:absolute;right:-40px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.35),transparent 65%)}
 .hero::after{content:"";position:absolute;left:-30px;bottom:-70px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(20,220,200,.38),transparent 65%)}
 .hero>*{position:relative;z-index:1}
-.hero .lbl{font-size:12.5px;font-weight:600;opacity:.85}
+.hero .lbl{font-size:12.5px;font-weight:600;color:#fff;opacity:1;text-shadow:0 1px 8px rgba(40,30,140,.35)}
 .hero .big{font-size:33px;font-weight:800;margin:2px 0 12px;letter-spacing:-.03em}
 .hero .big.neg{color:#ffe1e3}
 .mini{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -595,9 +595,10 @@ function renderHome(){
   const list=S.tx.filter(t=>inRange(t,R.start,R.end));
   const sm=sums(list),all=sums(S.tx);
   const rangeTxt=R.start===R.end?tglSedang(R.start):tglSedang(R.start)+' – '+tglSedang(R.end);
-  let h='<div class="card hero"><div class="lbl">Saldo bersih · '+esc(R.label)+'</div><div class="big num'+(sm.net<0?' neg':'')+'">'+rp(sm.net)+'</div>'+
+  const isAll=S.period==='semua';
+  let h='<div class="card hero"><div class="lbl">'+(isAll?'Sisa duit':'Saldo bersih · '+esc(R.label))+'</div><div class="big num'+(sm.net<0?' neg':'')+'">'+rp(sm.net)+'</div>'+
     '<div class="mini"><div><span>'+ICON.down.replace('<svg','<svg width="14" height="14"')+'Pemasukan</span><b class="num">'+rp(sm.m)+'</b></div><div><span>'+ICON.up.replace('<svg','<svg width="14" height="14"')+'Pengeluaran</span><b class="num">'+rp(sm.o)+'</b></div></div>'+
-    '<div class="sisa"><span>Sisa duit (keseluruhan)</span><b class="num">'+rp(all.net)+'</b></div></div>'+
+    (isAll?'':'<div class="sisa"><span>Sisa duit (keseluruhan)</span><b class="num">'+rp(all.net)+'</b></div>')+'</div>'+
     '<div class="range-note">'+esc(rangeTxt)+' · '+list.length+' transaksi</div>';
   if(!list.length){el.innerHTML=h+emptyHome();return}
 
