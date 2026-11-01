@@ -685,6 +685,7 @@ function barChart(pts){
 
 $('#periods').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;S.period=b.dataset.p;
   if(S.period==='kustom'&&!S.cFrom){S.cTo=todayStr();S.cFrom=addDays(S.cTo,-6);$('#c-from').value=S.cFrom;$('#c-to').value=S.cTo}
+  if(S.period!=='kustom')LS.set('cf_period',S.period);
   renderHome()});
 $('#c-from').addEventListener('change',e=>{S.cFrom=e.target.value;renderHome()});
 $('#c-to').addEventListener('change',e=>{S.cTo=e.target.value;renderHome()});
@@ -877,6 +878,7 @@ function init(){
   buildCatSelect();applyTheme();
   S.url=(window.APP_CONFIG&&window.APP_CONFIG.API_URL)||LS.get('cf_url')||'';
   S.pin=LS.get('cf_pin')||'';
+  const sp=LS.get('cf_period');S.period=['hari','minggu','bulan','semua'].includes(sp)?sp:'semua';
   if(S.url&&S.pin){showApp();loadCache();renderAll();refresh(true)}
   else showLock();
   if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){
